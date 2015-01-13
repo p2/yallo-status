@@ -35,7 +35,7 @@ def get_options(token):
 	res.raise_for_status()
 	
 	pat = re.compile(r'>([^>]+)\(verbleibendes\s+Inklusivguthaben:\s+([^\)]+)')
-	sub = re.compile(r'Option\s+([\w\s]+)\s+ist aktiv: Erneuerung spätestens am\s+([\d\.]+)')
+	sub = re.compile(r'Option\s+([\w\s]+)\s+ist aktiv: Erneuerung spätestens am\s*([\d\.]+)?')		# date may be missing on the day of renewal
 	options = []
 	for match in pat.finditer(res.text):
 		opt, val = match.groups()
